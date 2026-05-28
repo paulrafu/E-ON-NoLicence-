@@ -3,7 +3,7 @@
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.11%2B-41BDF5?logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 
-Aceasta integrare este in mare parte inspirata de la https://github.com/cnecrea/eonromania/ cu modificarile aduse de mine.
+Aceasta integrare este in mare parte inspirata de la Ciprian Nicolae, https://github.com/cnecrea/eonromania/ cu modificarile aduse de mine.
 
 Integrare custom pentru [Home Assistant](https://www.home-assistant.io/) care monitorizează datele contractuale, consumul și facturile prin API-ul [E·ON România](https://www.eon.ro/) (aplicația mobilă E·ON Myline).
 
