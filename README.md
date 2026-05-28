@@ -1,4 +1,4 @@
-# E·ON NoLicence — Integrare Home Assistant
+# eonnolicense — Integrare Home Assistant
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.11%2B-41BDF5?logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
@@ -57,14 +57,14 @@ Autentificarea se face cu email + parolă + semnătură HMAC-MD5 (mobile-login).
 
 1. Deschide HACS în Home Assistant
 2. Click pe cele 3 puncte (⋮) din colțul dreapta sus → **Custom repositories**
-3. Adaugă URL-ul: `https://github.com/paulrafu/E-ON-NoLicence-`
+3. Adaugă URL-ul: `https://github.com/paulrafu/eonnolicense`
 4. Categorie: **Integration**
-5. Click **Add** → găsește „E-ON-NoLicence-" → **Install**
+5. Click **Add** → găsește „eonnolicense" → **Install**
 6. Restartează Home Assistant
 
 ### Manual
 
-1. Copiază folderul `custom_components/E-ON-NoLicence-/` în directorul `config/custom_components/` din Home Assistant
+1. Copiază folderul `custom_components/eonnolicense/` în directorul `config/custom_components/` din Home Assistant
 2. Restartează Home Assistant
 
 ---
@@ -74,7 +74,7 @@ Autentificarea se face cu email + parolă + semnătură HMAC-MD5 (mobile-login).
 ### Pasul 1 — Adaugă integrarea
 
 1. **Setări** → **Dispozitive și Servicii** → **Adaugă Integrare**
-2. Caută „**E-ON-NoLicence-**"
+2. Caută „**eonnolicense**"
 3. Completează formularul:
 
 | Câmp | Descriere | Implicit |
@@ -98,7 +98,7 @@ Selectezi individual sau bifezi „Selectează toate contractele".
 
 Toate setările pot fi modificate după instalare, fără a șterge integrarea:
 
-1. **Setări** → **Dispozitive și Servicii** → click pe **E-ON-NoLicence-**
+1. **Setări** → **Dispozitive și Servicii** → click pe **eonnolicense**
 2. Click pe **Configurare** (⚙️)
 3. Modifică setările dorite → **Salvează**
 4. Integrarea se reîncarcă automat cu noile setări
@@ -124,7 +124,6 @@ Integrarea creează un **device** per contract selectat. Sub fiecare device se c
 | `Factură restantă prosumator` | Facturi prosumator (datorii + credite) | Da / Nu |
 | `Convenție consum` | Consum lunar convenit | Da / Nu |
 | `Planuri eșalonare` | Planuri de eșalonare (condiționat) | Număr planuri |
-| `Licență` | Status licență | Licență necesară |
 | `{an} → Arhivă index gaz` / `energie electrică` | Indexuri lunare per an | Număr citiri |
 | `{an} → Arhivă plăți` | Plăți lunare per an | Număr plăți |
 | `{an} → Arhivă consum gaz` / `energie electrică` | Consum lunar + mediu zilnic per an | Total consum |
@@ -308,8 +307,8 @@ Trimite indexul contorului către API-ul E·ON (endpoint meter-reading/index). F
 
 | Buton | input_number necesar | Entity ID (individual) | Entity ID (DUO subcontract) |
 |-------|---------------------|----------------------|----------------------------|
-| Trimite index gaz | `input_number.gas_meter_reading` | `button.eonromania_{cod}_trimite_index_gaz` | `button.eonromania_{cod_subcontract}_trimite_index_gaz` |
-| Trimite index energie electrică | `input_number.energy_meter_reading` | `button.eonromania_{cod}_trimite_index_energie_electrica` | `button.eonromania_{cod_subcontract}_trimite_index_energie_electrica` |
+| Trimite index gaz | `input_number.gas_meter_reading` | `button.eonnolicense_{cod}_trimite_index_gaz` | `button.eonnolicense_{cod_subcontract}_trimite_index_gaz` |
+| Trimite index energie electrică | `input_number.energy_meter_reading` | `button.eonnolicense_{cod}_trimite_index_energie_electrica` | `button.eonnolicense_{cod_subcontract}_trimite_index_energie_electrica` |
 
 **Cerințe**:
 - `input_number.gas_meter_reading` și/sau `input_number.energy_meter_reading` — definite de utilizator în `configuration.yaml`
@@ -326,14 +325,14 @@ automation:
   - alias: "Notificare factură restantă E·ON"
     trigger:
       - platform: state
-        entity_id: sensor.E-ON-NoLicence-_004412345678_factura_restanta
+        entity_id: sensor.eonnolicense-_004412345678_factura_restanta
         to: "Da"
     action:
       - service: notify.mobile_app_telefonul_meu
         data:
           title: "Factură restantă E·ON"
           message: >
-            Ai {{ state_attr('sensor.E-ON-NoLicence-_004412345678_factura_restanta', 'Total neachitat') }}
+            Ai {{ state_attr('sensor.eonnolicense_004412345678_factura_restanta', 'Total neachitat') }}
             de plătit.
 ```
 
@@ -343,15 +342,15 @@ automation:
 type: entities
 title: E-ON-NoLicence-
 entities:
-  - entity: sensor.eonromania_004412345678_date_contract
+  - entity: sensor.eonnolicense_004412345678_date_contract
     name: Contract
-  - entity: sensor.eonromania_004412345678_sold_factura
+  - entity: sensor.eonnolicense_004412345678_sold_factura
     name: Sold factură
-  - entity: sensor.eonromania_004412345678_citire_permisa
+  - entity: sensor.eonnolicense_004412345678_citire_permisa
     name: Citire permisă
-  - entity: sensor.eonromania_004412345678_factura_restanta
+  - entity: sensor.eonnolicense_004412345678_factura_restanta
     name: Factură restantă
-  - entity: sensor.eonromania_004412345678_conventie_consum
+  - entity: sensor.eonnolicense_004412345678_conventie_consum
     name: Convenție consum
 ```
 
